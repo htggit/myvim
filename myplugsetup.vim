@@ -1,0 +1,32 @@
+" ============================================================================ "
+" ===                           PLUGIN SETUP                               === "
+" ============================================================================ "
+
+
+"Close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" === NERDTree === "
+source ~/.vim/mynerdtree.vim
+
+" === Vim airline ==== "
+source ~/.vim/myairline.vim
+
+" === echodoc === "
+" Enable echodoc on startup
+let g:echodoc#enable_at_startup = 1
+
+" === vim-javascript === "
+" Enable syntax highlighting for JSDoc
+let g:javascript_plugin_jsdoc = 1
+
+" === vim-jsx === "
+" Highlight jsx syntax even in non .jsx files
+let g:jsx_ext_required = 0
+
+" === javascript-libraries-syntax === "
+let g:used_javascript_libs = 'underscore,requirejs,chai,jquery'
+
+" === Signify === "
+let g:signify_sign_delete = '-'
+
