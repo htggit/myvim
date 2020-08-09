@@ -2,10 +2,6 @@
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
 
-
-"Close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
 " === NERDTree === "
 source ~/.vim/mynerdtree.vim
 

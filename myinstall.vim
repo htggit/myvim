@@ -49,9 +49,6 @@ Plug 'othree/yajs.vim'
 " File explorer
 Plug 'scrooloose/nerdtree'
 
-" Colorscheme
-" Plug 'mhartington/oceanic-next'
-
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -60,5 +57,21 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" Colorscheme
+Plug 'ParamagicDev/vim-medic_chalk'
+Plug 'reewr/vim-monokai-phoenix'
+
+" FloatTerm
+Plug 'voldikss/vim-floaterm'
+
+Plug 'liuchengxu/vim-clap'
+
+Plug 'voldikss/vim-floaterm'
+
 " Initialize plugin system
 call plug#end()
+
+" colorscheme medic_chalk
+colorscheme monokai-phoenix
+
+

@@ -1,3 +1,5 @@
+set nocompatible
+
 " ============================================================================ "
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
@@ -51,8 +53,26 @@ set smartcase
 set autoread
 
 
-" Enable spellcheck for markdown files
-autocmd BufRead,BufNewFile *.md setlocal spell
+" Enable true color support
+set termguicolors
+
+" Vim airline theme
+let g:airline_theme='cool'
+
+" Change vertical split character to be a space (essentially hide it)
+set fillchars+=vert:.
+
+" Set preview window to appear at bottom
+set splitbelow
+
+" Don't dispay mode in command line (airilne already shows it)
+set noshowmode
+
+" Set floating window to be slightly transparent
+if has('nvim')
+  set winbl=10
+endif
+
 
 if has('persistent_undo')
   set undofile
@@ -70,11 +90,9 @@ set undodir=~/.vim/.undo/
 set wildmode=longest:full
 set mouse=a
 
-set nocompatible
 set showmode
 set mouse=a
 set encoding=utf-8
-set t_Co=256
 syntax on
 filetype plugin indent on
 
@@ -121,10 +139,17 @@ set cmdheight=2
 
 
 " Changing cursor shape per mode
-" t_SI Start Insert mode
-" t_SR Start Replace mode
-" t_EI End Insert or replace mode
+if has('nvim')
+  let $TERM = 'iterm2'
+  set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+        \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+        \,sm:block-blinkwait175-blinkoff150-blinkon175
+else
+  " t_SI Start Insert mode
+  " t_SR Start Replace mode
+  " t_EI End Insert or replace mode
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
