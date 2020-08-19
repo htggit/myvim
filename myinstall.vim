@@ -45,8 +45,6 @@ Plug 'othree/javascript-libraries-syntax.vim'
 " Improved syntax highlighting and indentation
 Plug 'othree/yajs.vim'
 
-" === UI === "
-" File explorer
 Plug 'scrooloose/nerdtree'
 
 " Customized vim status line
@@ -58,16 +56,13 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " Colorscheme
-Plug 'ParamagicDev/vim-medic_chalk'
 Plug 'reewr/vim-monokai-phoenix'
 
-" FloatTerm
 Plug 'voldikss/vim-floaterm'
 
 Plug 'liuchengxu/vim-clap'
 
-Plug 'voldikss/vim-floaterm'
-
+Plug 'thaerkh/vim-workspace'
 " Initialize plugin system
 call plug#end()
 

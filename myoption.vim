@@ -4,7 +4,7 @@ set nocompatible
 " ===                           EDITING OPTIONS                            === "
 " ============================================================================ "
 " Remap leader key to ,
-let g:mapleader=','
+let g:mapleader=' '
 
 " Don't show last command
 set noshowcmd
