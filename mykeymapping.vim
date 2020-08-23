@@ -18,7 +18,7 @@ cmap w!! w !sudo tee %
 " Vim's default buffer
 vnoremap <nowait><leader>p "_dP
 
-nmap <leader>u :<C-u>update<CR>
+nmap <leader>ss :<C-u>update<CR>
 
 nmap <leader>so :<c-u>exe ":if &filetype == 'vim'\|source %\|endif"<CR>
 nmap <leader>sa :<C-u>wall<CR>
@@ -35,12 +35,17 @@ nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 nmap <C-q> <C-w>q
 
-nmap  <nowait><leader>x :call <SID>my_kill_buffer('x')<CR>
+nmap  <nowait><leader>x :<c-u>exe 'NerdtreeClosecomplete_info()["selected"] != "-1" ? "\" : "\call <SID>my_kill_buffer('k')<CR>
+nmap  <nowait><leader>k :call <SID>my_kill_buffer('k')<CR>
 nmap  <nowait><leader>q :call <SID>my_kill_buffer('q')<CR>
 function! s:my_kill_buffer(page) abort
   let l:bufnr = bufnr()
   if a:page == 'q'
-    exe "normal \<c-^>"
+    try
+      exe "normal \<c-^>"
+    catch /.*/
+      bn
+    endtry
   else
     bn
   endif
@@ -96,11 +101,11 @@ endif
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-" if exists('*complete_info')
-"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-" else
-"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" endif
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.

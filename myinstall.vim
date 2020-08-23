@@ -3,6 +3,8 @@
 " ============================================================================ "
 
 call plug#begin('~/.vim/plugged')
+Plug '~/.vim/myutil.vim'
+
 " === Editing Plugins === "
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
@@ -14,7 +16,7 @@ Plug 'rstacruz/vim-closer'
 Plug 'easymotion/vim-easymotion'
 
 " Intellisense Engine
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim'
 
 " Print function signatures in echo area
 Plug 'Shougo/echodoc.vim'
@@ -49,7 +51,6 @@ Plug 'scrooloose/nerdtree'
 
 " Customized vim status line
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 
 " Icons
 Plug 'ryanoasis/vim-devicons'

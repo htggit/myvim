@@ -70,3 +70,7 @@ let g:clap_theme = 'material_design_dark'
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+
+
+let g:floaterm_wintype = 'normal'
+let g:floaterm_height = 0.2

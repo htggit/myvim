@@ -9,15 +9,15 @@ augroup mygroup
   "autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
   " Enable spellcheck for markdown files
-  autocmd BufRead,BufNewFile *.md setlocal spell
+  autocmd! BufRead,BufNewFile *.md setlocal spell
 
   if has('nvim')
-    autocmd TermOpen * startinsert
-    autocmd TermLeave * stopinsert
+    autocmd! TermOpen * startinsert
+    autocmd! TermLeave * stopinsert
   endif
 
-  autocmd FileType nerdtree setl number | setl relativenumber | setl signcolumn=no
-  autocmd FileType help setl number | setl relativenumber | setl signcolumn=no
+  autocmd! FileType nerdtree setl number | setl relativenumber | setl signcolumn=no
+  autocmd! FileType help setl number | setl relativenumber | setl signcolumn=no
 
   " === Coc.nvim === "
   "Close preview window when completion is done.
@@ -25,14 +25,13 @@ augroup mygroup
 
   autocmd! User ClapOnExit AirlineRefresh | echomsg 'bbbbbb'
 
-  autocmd!
   " Highlight the symbol and its references when holding the cursor.
-  autocmd CursorHold * silent call CocActionAsync('highlight')
+  autocmd! CursorHold * silent call CocActionAsync('highlight')
 
   " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd! FileType typescript,json setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd! User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
 
 command! MyCopy let g:my_copy_source_file = expand('%:p')|let g:my_copy_filename = expand('%:t')|echo g:my_copy_source_file
@@ -53,7 +52,7 @@ endfunction
 command! -nargs=0 MyFormat :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? MyFold :call     CocAction('fold', <f-args>)
+command! -nargs=? MyFold :call CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 MyImport   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 MyImport :call CocAction('runCommand', 'editor.action.organizeImport')

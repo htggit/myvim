@@ -1,8 +1,8 @@
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
-  let g:airline_theme = 'cool'
+  let g:airline_theme = 'mine'
 
-  " === Vim airlhhhhine ==== "
+  " === Vim airline ==== "
   " Enable extensions
   let g:airline_extensions = ['branch', 'hunks', 'coc', 'tabline']
 
@@ -16,7 +16,12 @@ try
   " Do not draw separators for empty sections (only for the active window) >
   let g:airline_skip_empty_sections = 1
 
-  let g:airline_section_c = airline#section#create(['%{myutil#get_current_buffer_name()}', '%m'])
+  let g:airline_section_c = airline#section#create(['%{myutil#get_current_buffer_name()}', '%m', 'coc_status'])
+
+  let airline#extensions#coc#error_symbol = 'E:'
+  let airline#extensions#coc#warning_symbol = 'W:'
+  let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+  let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
   " Customize vim airline per filetype
   " 'nerdtree'  - Hide nerdtree status line
@@ -47,16 +52,17 @@ try
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
-  let g:airline_left_sep = ''
-  let g:airline_right_sep = ''
-  let g:airline_symbols.crypt = 'C'
-  let g:airline_symbols.linenr = ''
-  let g:airline_symbols.maxlinenr = ''
-  let g:airline_symbols.branch = ''
-  let g:airline_symbols.paste = 'P'
-  let g:airline_symbols.spell = 'S'
-  let g:airline_symbols.notexists = 'NE'
-  let g:airline_symbols.whitespace = 'Ξ'
+"  let g:airline_left_sep = ''
+"  let g:airline_right_sep = ''
+  let g:airline_symbols.space = ' '
+"  let g:airline_symbols.crypt = 'C'
+"  let g:airline_symbols.linenr = ''
+"  let g:airline_symbols.maxlinenr = ''
+"  let g:airline_symbols.branch = ''
+"  let g:airline_symbols.paste = 'P'
+  let g:airline_symbols.spell = ''
+"  let g:airline_symbols.notexists = 'NE'
+"  let g:airline_symbols.whitespace = 'Ξ'
 
   let g:airline_mode_map = {
       \ '__'     : '-',
