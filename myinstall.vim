@@ -3,14 +3,14 @@
 " ============================================================================ "
 
 call plug#begin('~/.vim/plugged')
-Plug '~/.vim/myutil.vim'
+Plug '~/.vim/mine.vim'
 
 " === Editing Plugins === "
 " Trailing whitespace highlighting & automatic fixing
 Plug 'ntpeters/vim-better-whitespace'
 
 " auto-close plugin
-Plug 'rstacruz/vim-closer'
+" Plug 'rstacruz/vim-closer'  " conflicts with coc.nvim completion
 
 " Improved motion in Vim
 Plug 'easymotion/vim-easymotion'

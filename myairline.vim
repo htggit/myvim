@@ -16,7 +16,7 @@ try
   " Do not draw separators for empty sections (only for the active window) >
   let g:airline_skip_empty_sections = 1
 
-  let g:airline_section_c = airline#section#create(['%{myutil#get_current_buffer_name()}', '%m', 'coc_status'])
+"  let g:airline_section_c = airline#section#create(['%{myutil#get_current_buffer_name()}', '%m', '%{airline#util#wrap(airline#extensions#coc#get_status(), 0)}'])
 
   let airline#extensions#coc#error_symbol = 'E:'
   let airline#extensions#coc#warning_symbol = 'W:'

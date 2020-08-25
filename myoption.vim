@@ -104,7 +104,6 @@ set softtabstop=2
 
 set relativenumber
 set number
-set cursorline
 set textwidth=80
 set wrap
 set linebreak
@@ -119,8 +118,8 @@ set showmatch
 set hlsearch
 set ignorecase
 set smartcase
-
-set spell spelllang=en_us
+set spelllang=en_us
+set nospell
 
 set noautochdir
 set noerrorbells

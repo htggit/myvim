@@ -19,10 +19,10 @@ cmap w!! w !sudo tee %
 vnoremap <nowait><leader>p "_dP
 
 nmap <leader>ss :<C-u>update<CR>
-
-nmap <leader>so :<c-u>exe ":if &filetype == 'vim'\|source %\|endif"<CR>
 nmap <leader>sa :<C-u>wall<CR>
-nnoremap <leader>ba :<C-U>exe ':breakadd func <SNR>' . myutil#get_snr(expand("%:p")) . '_' . expand("<cword>")<CR>
+nmap <leader>so :<c-u>exe ":if &filetype == 'vim'\|source %\|endif"<CR>
+nmap <leader>sp :<C-u>exe ":if &spell == 1\|setl nospell\|else\|setl spell\|endif"<CR>
+nmap <leader>ba :<C-U>exe ':breakadd func <SNR>' . myutil#get_snr(expand("%:p")) . '_' . expand("<cword>")<CR>
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
@@ -34,13 +34,21 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 nmap <C-q> <C-w>q
+nmap <C-x> :<c-u>call <SID>my_kill_buffer('^')<CR>
 
-nmap  <nowait><leader>x :<c-u>exe 'NerdtreeClosecomplete_info()["selected"] != "-1" ? "\" : "\call <SID>my_kill_buffer('k')<CR>
-nmap  <nowait><leader>k :call <SID>my_kill_buffer('k')<CR>
-nmap  <nowait><leader>q :call <SID>my_kill_buffer('q')<CR>
+nmap  <nowait><leader>qa :<c-u>call <SID>my_quit_all()<CR>
+function! s:my_quit_all() abort
+  NERDTreeClose
+  if floaterm#buflist#find_curr() != -1
+    FloatermKill
+  endif
+  qa
+endfunction
+
+nmap  <nowait><leader>k :<c-u>call <SID>my_kill_buffer('k')<CR>
 function! s:my_kill_buffer(page) abort
   let l:bufnr = bufnr()
-  if a:page == 'q'
+  if a:page == '^'
     try
       exe "normal \<c-^>"
     catch /.*/
@@ -67,8 +75,6 @@ cmap <c-d> <delete>
 cmap <c-h> <bs>
 
 " === Nerdtree shorcuts === "
-"  <leader>n - Toggle NERDTree on/off
-"  <leader>f - Opens current file location in NERDTree
 nmap <nowait> <leader>nn :NERDTreeToggle<CR>
 nmap <nowait> <leader>nf :NERDTreeFind<CR>
 
@@ -101,11 +107,22 @@ endif
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+inoremap <expr> <cr> <SID>confirm_completion()
+function! s:confirm_completion() abort
+  if exists('*complete_info')
+    if complete_info()["selected"] != "-1"
+      return "\<C-y>"
+    else
+      return "\<C-g>u\<CR>"
+    endif
+  else
+    if pumvisible()
+      return "\<C-y>"
+    else
+      return "\<C-g>u\<CR>"
+    endif
+  endif
+endfunction
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -215,6 +232,10 @@ let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<c-t>'
+tnoremap <c-o> <c-\><c-n>
+tnoremap <c-k> <c-\><c-n> <c-w>p
+tnoremap <c-n> <c-\><c-n> :FloatermNext<CR>
+tnoremap <c-p> <c-\><c-n> :FloatermPrev<CR>
 
 " === airline buffer shortcuts ==="
 nmap <leader>1 <Plug>AirlineSelectTab1

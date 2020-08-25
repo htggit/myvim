@@ -93,20 +93,19 @@ let g:airline#themes#mine#palette.normal = airline#themes#generate_color_map(s:a
 " Here we define overrides for when the buffer is modified.  This will be
 " applied after g:airline#themes#mine#palette.normal, hence why only certain keys are
 " declared.
-      "\ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-let s:airline_c_normal_modified   = [ '#000000' , '#00ff00' , 255     , 53      , ''     ]
+let s:airline_c_normal_modified = [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ]
+let s:airline_c_normal_modified = [ '#000000' , '#00ff00' , 255     , 53      , ''     ]
 let g:airline#themes#mine#palette.normal_modified = {}
 let g:airline#themes#mine#palette.normal_modified.airline_c = s:airline_c_normal_modified
-
 
 let s:airline_a_insert = [ '#00005f' , '#00dfff' , 17  , 45  ]
 let s:airline_b_insert = [ '#ffffff' , '#005fff' , 255 , 27  ]
 let s:airline_c_insert = [ '#ffffff' , '#800000' , 15  , 17  ]
 let g:airline#themes#mine#palette.insert = airline#themes#generate_color_map(s:airline_a_insert, s:airline_b_insert, s:airline_c_insert)
-"      \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-let g:airline#themes#mine#palette.insert_modified = {
-      \ 'airline_c': [ '#000000' , '#ff0000' , 255     , 53      , ''     ] ,
-      \ }
+let s:airline_c_insert_modified = [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ]
+let g:airline#themes#mine#palette.insert_modified = {}
+let g:airline#themes#mine#palette.insert_modified.airline_c = s:airline_c_insert_modified
+
 let g:airline#themes#mine#palette.insert_paste = {
       \ 'airline_a': [ s:airline_a_insert[0]   , '#d78700' , s:airline_a_insert[2] , 172     , ''     ] ,
       \ }
@@ -122,10 +121,9 @@ let s:airline_a_visual = [ '#000000' , '#ffaf00' , 232 , 214 ]
 let s:airline_b_visual = [ '#000000' , '#ff5f00' , 232 , 202 ]
 let s:airline_c_visual = [ '#ffffff' , '#5f0000' , 15  , 52  ]
 let g:airline#themes#mine#palette.visual = airline#themes#generate_color_map(s:airline_a_visual, s:airline_b_visual, s:airline_c_visual)
-let g:airline#themes#mine#palette.visual_modified = {
-      \ 'airline_c': [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ] ,
-      \ }
-
+let s:airline_c_visual_modified = [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ]
+let g:airline#themes#mine#palette.visual_modified = {}
+let g:airline#themes#mine#palette.visual_modified.airline_c = s:airline_c_visual_modified
 
 let s:airline_a_inactive = [ '#4e4e4e' , '#1c1c1c' , 239 , 234 , '' ]
 let s:airline_a_inactive = [ '#aeaeae' , '#1c1c1c' , 239 , 234 , '' ]
@@ -134,9 +132,10 @@ let s:airline_b_inactive = [ '#aeaeae' , '#262626' , 239 , 235 , '' ]
 let s:airline_c_inactive = [ '#4e4e4e' , '#303030' , 239 , 236 , '' ]
 let s:airline_c_inactive = [ '#9cffd3' , '#202020' , 85  , 234 , '' ]
 let g:airline#themes#mine#palette.inactive = airline#themes#generate_color_map(s:airline_a_inactive, s:airline_b_inactive, s:airline_c_inactive)
-let g:airline#themes#mine#palette.inactive_modified = {
-      \ 'airline_c': [ '#875faf' , '' , 97 , '' , '' ] ,
-      \ }
+let s:airline_c_inactive_modified = [ '#875faf' , '#202020' , 97 , '' , '' ]
+let s:airline_c_inactive_modified = [ '#00ff00' , '#202020' , 97 , '' , '' ]
+let g:airline#themes#mine#palette.inactive_modified = {}
+let g:airline#themes#mine#palette.inactive_modified.airline_c = s:airline_c_inactive_modified
 
 " For commandline mode, we use the colors from normal mode, except the mode
 " indicator should be colored differently, e.g. light green
@@ -155,7 +154,7 @@ let g:airline#themes#mine#palette.commandline = airline#themes#generate_color_ma
 let g:airline#themes#mine#palette.accents = {
       \ 'red': [ '#ff0000' , '' , 160 , ''  ]
       \ }
-
+ 
 
 " Here we define the color map for ctrlp.  We check for the g:loaded_ctrlp
 " variable so that related functionality is loaded if the user is using
@@ -172,10 +171,10 @@ endif
 let g:airline#themes#mine#palette.tabline = {}
 let g:airline#themes#mine#palette.tabline.airline_tablabel = s:airline_b_visual
 let g:airline#themes#mine#palette.tabline.airline_tab = s:airline_c_inactive
-let g:airline#themes#mine#palette.tabline.airline_tabsel = s:airline_a_normal
+let g:airline#themes#mine#palette.tabline.airline_tabsel = s:airline_c_normal
 let g:airline#themes#mine#palette.tabline.airline_tabtype = s:airline_a_visual
 let g:airline#themes#mine#palette.tabline.airline_tabfill = s:airline_c_inactive
 let g:airline#themes#mine#palette.tabline.airline_tabmod = s:airline_c_normal_modified
-let g:airline#themes#mine#palette.tabline.airline_tabmod_unsel = s:airline_c_normal
+let g:airline#themes#mine#palette.tabline.airline_tabmod_unsel = s:airline_c_inactive_modified
 let g:airline#themes#mine#palette.tabline.airline_tabhid = s:airline_b_inactive
 

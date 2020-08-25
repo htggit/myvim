@@ -74,3 +74,4 @@ endif
 
 let g:floaterm_wintype = 'normal'
 let g:floaterm_height = 0.2
+let g:floaterm_new_cmd = 'cd ' . getcwd() . ' && ' .  'source ~/.bash_profile'

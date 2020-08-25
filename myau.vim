@@ -16,8 +16,7 @@ augroup mygroup
     autocmd! TermLeave * stopinsert
   endif
 
-  autocmd! FileType nerdtree setl number | setl relativenumber | setl signcolumn=no
-  autocmd! FileType help setl number | setl relativenumber | setl signcolumn=no
+  autocmd! FileType floaterm,nerdtree,help setl nospell | setl number | setl relativenumber | setl signcolumn=no
 
   " === Coc.nvim === "
   "Close preview window when completion is done.
