@@ -1,7 +1,3 @@
-" ============================================================================ "
-" ===                               PLUGINS                                === "
-" ============================================================================ "
-
 call plug#begin('~/.vim/plugged')
 Plug '~/.vim/mine.vim'
 
@@ -64,10 +60,10 @@ Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-clap'
 
 Plug 'thaerkh/vim-workspace'
-" Initialize plugin system
+
+Plug 'wlangstroth/vim-racket'
 call plug#end()
 
-" colorscheme medic_chalk
 colorscheme monokai-phoenix
 
 

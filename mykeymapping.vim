@@ -26,7 +26,13 @@ nmap <leader>ba :<C-U>exe ':breakadd func <SNR>' . myutil#get_snr(expand("%:p"))
 
 " === Easy-motion shortcuts ==="
 "   <leader>w - Easy-motion highlights first word letters bi-directionally
-nmap <nowait> <leader>w <Plug>(easymotion-bd-w)
+" nmap <nowait> <leader>w <Plug>(easymotion-bd-w)
+nmap <nowait> <leader>w :<c-u>call <SID>my_easymotion()<cr>
+function! s:my_easymotion() abort
+  CocDisable
+  call EasyMotion#WB(0,2)
+  CocEnable
+endfunction
 
 " Quick window switching
 nmap <C-h> <C-w>h
@@ -64,6 +70,7 @@ endfunction
 nmap <nowait> <c-p> :<C-u>bp<CR>
 nmap <nowait> <c-n> :<C-u>bn<CR>
 
+nmap <nowait><leader><leader> <PageDown>
 nmap <nowait><leader>, <PageDown>
 nmap <nowait><leader>. <PageUp>
 
@@ -201,7 +208,6 @@ nnoremap <nowait> <leader>ck  :<C-u>CocPrev<CR>
 nnoremap <nowait> <leader>cr  :<C-u>CocListResume<CR>
 nnoremap <nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 nmap <nowait><leader>cf :<C-u>CocList files<CR>
-
 nmap <nowait><leader>pp :<C-u>Clap files<CR>
 nmap <nowait><leader>ff :<C-u>exe 'Clap!! files ++query=' . expand("%:h") . '\'<CR>
 nmap <nowait><leader>er :<C-u>Clap filer<CR>

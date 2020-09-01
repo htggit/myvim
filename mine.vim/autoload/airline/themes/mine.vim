@@ -100,9 +100,10 @@ let g:airline#themes#mine#palette.normal_modified.airline_c = s:airline_c_normal
 
 let s:airline_a_insert = [ '#00005f' , '#00dfff' , 17  , 45  ]
 let s:airline_b_insert = [ '#ffffff' , '#005fff' , 255 , 27  ]
-let s:airline_c_insert = [ '#ffffff' , '#800000' , 15  , 17  ]
+let s:airline_c_insert = [ '#ffffff' , '#f00000' , 15  , 17  ]
 let g:airline#themes#mine#palette.insert = airline#themes#generate_color_map(s:airline_a_insert, s:airline_b_insert, s:airline_c_insert)
 let s:airline_c_insert_modified = [ '#ffffff' , '#5f005f' , 255     , 53      , ''     ]
+let s:airline_c_insert_modified = [ '#ffffff' , '#800000' , 255     , 53      , ''     ]
 let g:airline#themes#mine#palette.insert_modified = {}
 let g:airline#themes#mine#palette.insert_modified.airline_c = s:airline_c_insert_modified
 
