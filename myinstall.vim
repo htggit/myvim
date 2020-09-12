@@ -62,6 +62,9 @@ Plug 'liuchengxu/vim-clap'
 Plug 'thaerkh/vim-workspace'
 
 Plug 'wlangstroth/vim-racket'
+
+Plug 'preservim/nerdcommenter'
+
 call plug#end()
 
 colorscheme monokai-phoenix

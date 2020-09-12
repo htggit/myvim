@@ -34,6 +34,9 @@ function! s:my_easymotion() abort
   CocEnable
 endfunction
 
+xmap <a-/> :call NERDComment("x", "Toggle")<CR>
+nmap <a-/> :call NERDComment("n", "Toggle")<CR>
+
 " Quick window switching
 nmap <C-h> <C-w>h
 nmap <C-j> <C-w>j
@@ -42,7 +45,7 @@ nmap <C-l> <C-w>l
 nmap <C-q> <C-w>q
 nmap <C-x> :<c-u>call <SID>my_kill_buffer('^')<CR>
 
-nmap  <nowait><leader>qa :<c-u>call <SID>my_quit_all()<CR>
+nmap  <nowait><leader>qq :<c-u>call <SID>my_quit_all()<CR>
 function! s:my_quit_all() abort
   NERDTreeClose
   if floaterm#buflist#find_curr() != -1
@@ -51,7 +54,7 @@ function! s:my_quit_all() abort
   qa
 endfunction
 
-nmap  <nowait><leader>k :<c-u>call <SID>my_kill_buffer('k')<CR>
+nmap <a-x> :<c-u>call <SID>my_kill_buffer('k')<CR>
 function! s:my_kill_buffer(page) abort
   let l:bufnr = bufnr()
   if a:page == '^'
@@ -156,6 +159,7 @@ endfunction
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
+nmap <leader>ff  <Plug>(coc-format)
 xmap <leader>fs  <Plug>(coc-format-selected)
 nmap <leader>fs  <Plug>(coc-format-selected)
 
@@ -207,38 +211,46 @@ nnoremap <nowait> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <nowait> <leader>cr  :<C-u>CocListResume<CR>
 nnoremap <nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
-nmap <nowait><leader>cf :<C-u>CocList files<CR>
-nmap <nowait><leader>pp :<C-u>Clap files<CR>
-nmap <nowait><leader>ff :<C-u>exe 'Clap!! files ++query=' . expand("%:h") . '\'<CR>
-nmap <nowait><leader>er :<C-u>Clap filer<CR>
-nmap <nowait><leader>ee :<C-u>call <SID>run_clap_local('Clap filer')<CR>
-nmap <nowait><leader>gi :<C-u>Clap grep<CR>
-nmap <nowait><leader>gw :<C-u>Clap grep ++query=<cword><CR>
-xmap <nowait><leader>gw :<C-u>Clap grep ++query=@visual<CR>
-function! s:run_clap_local(clapCommand) abort
-  cd %:h
-  exe a:clapCommand
-  cd -
+nmap <a-p> :<C-u>CocList -N files<CR>
+nmap <a-f> :<C-u>CocList -N -A -I grep<CR>
+xmap <a-f> :<C-u>call <SID>my_coc_grep()<CR>
+function! s:my_coc_grep() abort
+  let l:sel = substitute(trim(myutil#get_visual_selection()), ' ', '', 'g')
+  exe "CocList -N -A -I --input=" . l:sel . " grep"
 endfunction
-nmap <nowait><leader>bb :<C-u>Clap buffers<CR>
-nmap <nowait><leader>si :<C-u>Clap blines<CR>
-nmap <nowait><leader>sw :<C-u>Clap blines ++query=<cword><CR>
-xmap <nowait><leader>sw :<C-u>Clap blines ++query=@visual<CR>
-" nmap <space>g :<C-u>exe 'CocList -I --input='.expand('<cword>').' grep'<CR>
-nmap <nowait><leader>gd :<C-u>Clap git_diff_files<CR>
-nmap <nowait><leader>gf :<C-u>Clap git_files<CR>
-nmap <nowait><leader>gl :<C-u>Clap commits<CR>
+
+"nmap <nowait><leader>pp :<C-u>Clap files<CR>
+"nmap <nowait><leader>er :<C-u>Clap filer<CR>
+"nmap <nowait><leader>ee :<C-u>call <SID>run_clap_local('Clap filer')<CR>
+"nmap <nowait><leader>gi :<C-u>Clap grep<CR>
+"nmap <nowait><leader>gw :<C-u>Clap grep ++query=<cword><CR>
+"xmap <nowait><leader>gw :<C-u>Clap grep ++query=@visual<CR>
+"function! s:run_clap_local(clapCommand) abort
+  "cd %:h
+  "exe a:clapCommand
+  "cd -
+"endfunction
+"nmap <nowait><leader>bb :<C-u>Clap buffers<CR>
+"nmap <nowait><leader>si :<C-u>Clap blines<CR>
+"nmap <nowait><leader>sw :<C-u>Clap blines ++query=<cword><CR>
+"xmap <nowait><leader>sw :<C-u>Clap blines ++query=@visual<CR>
+"nmap <nowait><leader>gd :<C-u>Clap git_diff_files<CR>
+"nmap <nowait><leader>gf :<C-u>Clap git_files<CR>
+"nmap <nowait><leader>gl :<C-u>Clap commits<CR>
 
 " === vim-better-whitespace === "
 "   <leader>y - Automatically remove trailing whitespace
 nmap <nowait><leader>st :StripWhitespace<CR>
 
 " === floatterm ==="
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<c-t>'
-tnoremap <c-o> <c-\><c-n>
+nnoremap <F9>  :FloatermNew<CR>
+tnoremap <F9>  <C-\><C-n>:FloatermNew<CR>
+nnoremap <F10>  :FloatermPrev<CR>
+tnoremap <F10>  <C-\><C-n>:FloatermPrev<CR>
+nnoremap <F11>  :FloatermNext<CR>
+tnoremap <F11>  <C-\><C-n>:FloatermNext<CR>
+nnoremap <a-`> :FloatermToggle<CR>
+tnoremap <a-`> <C-\><C-n>:FloatermToggle<CR>tnoremap <c-o> <c-\><c-n>
 tnoremap <c-k> <c-\><c-n> <c-w>p
 tnoremap <c-n> <c-\><c-n> :FloatermNext<CR>
 tnoremap <c-p> <c-\><c-n> :FloatermPrev<CR>
